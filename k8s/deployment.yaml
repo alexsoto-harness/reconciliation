@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reconciliation
+  labels:
+    app: reconciliation
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: reconciliation
+  template:
+    metadata:
+      labels:
+        app: reconciliation
+    spec:
+      containers:
+        - name: reconciliation
+          image: docker.io/alexsotoharness/reconciliation:latest
+          ports:
+            - containerPort: 8080

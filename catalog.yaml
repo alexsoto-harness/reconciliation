@@ -1,0 +1,58 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+projectIdentifier: soto_sandbox
+project_name: soto_sandbox
+orgIdentifier: sandbox
+org_name: Sandbox
+metadata:
+  name: reconciliation
+  description: ensure that all money is accounted for
+  usesGoldenPipeline: "true"
+  hasRunbook: "true"
+  specOwnerExists: "true"
+  supportedImage: 18
+  additionalInfo:
+    tfc_current_state: Synced
+    tfc_policy_check: Passed
+    criticalCount: "1"
+    criticalCVEs: CVE-2025-24813
+    highCount: "3"
+    highCVEs: CVE-2024-50379, CVE-2024-56337, CVE-2025-22235
+    CVE-2025-24813: "1"
+    argoSync: Synced
+    argoHealth: Healthy
+  links:
+    - url: http://104.154.141.136/
+      title: Service Endpoint
+      icon: kubernetes
+    - url: https://argo.sotocodes.com/applications/argocd/fraud-detection
+      title: Sync with ArgoCD
+      icon: argo
+    - url: https://portal.cloud.hashicorp.com/sign-in
+      title: Check Terraform Drift
+      icon: terraform 
+  tags:
+    - soto
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: alexsoto-harness/reconciliation
+    snyk.io/org-id: b4c68fa5-d1b2-451f-a162-ea2ed840727f
+    snyk.io/target-id: alexsoto-harness/reconciliation
+    wiz.io/project-id: alexsoto-harness/reconciliation
+    sonarqube.org/project-key: alexsoto-harness_reconciliation
+    backstage.io/kubernetes-label-selector: 'app=reconciliation'
+    backstage.io/source-location: url:https://github.com/alexsoto-harness/reconciliation/tree/main/
+spec:
+  type: service
+  owner: user:account/group:default/alejandro.soto@harness.io
+  lifecycle: sandbox
+#  dependsOn:
+#    - component:default/replace-this
+#  system: poc-system
+relations:
+  - type: ownedBy
+    targetRef: group:account/group:default/alejandro.soto@harness.io
+    target:
+      kind: user
+      namespace: account
+      name: group:default/alejandro.soto@harness.io
